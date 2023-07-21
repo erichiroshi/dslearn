@@ -2,8 +2,6 @@ package com.devsuperior.dslearnbds.entities;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -27,28 +24,22 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode(of = "id")
 @Entity
-@Table(name = "tb_offer")
-public class Offer implements Serializable {
+@Table(name = "tb_notification")
+public class Notification implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String edition;
+	private String text;
 
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-	private LocalDateTime startMoment;
-
-	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-	private LocalDateTime endMoment;
+	private LocalDateTime moment;
+	private boolean read;
+	private String route;
 
 	@ManyToOne
-	@JoinColumn(name = "course_id")
-	private Course course;
+	@JoinColumn(name = "user_id")
+	private User user;
 
-	@OneToMany(mappedBy = "offer")
-	private final List<Resource> resources = new ArrayList<>();
-	
-	@OneToMany(mappedBy = "offer")
-	private final List<Topic> topics = new ArrayList<>();	
 }
