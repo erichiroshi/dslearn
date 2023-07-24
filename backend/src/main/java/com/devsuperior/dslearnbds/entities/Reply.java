@@ -55,6 +55,6 @@ public class Reply implements Serializable {
 		joinColumns = @JoinColumn(name = "reply_id"),
 		inverseJoinColumns = @JoinColumn(name = "user_id")
 	)
-	private Set<User> likes = new HashSet<>();
+	private final Set<User> likes = new HashSet<>();
 	
 }
