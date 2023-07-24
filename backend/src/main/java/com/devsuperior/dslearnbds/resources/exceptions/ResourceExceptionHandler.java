@@ -1,6 +1,6 @@
 package com.devsuperior.dslearnbds.resources.exceptions;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -23,7 +23,7 @@ public class ResourceExceptionHandler {
 	public ResponseEntity<StandardError> entityNotFound(ResourceNotFoundException e, HttpServletRequest request) {
 		HttpStatus status = HttpStatus.NOT_FOUND;
 		StandardError err = new StandardError();
-		err.setTimestamp(Instant.now());
+		err.setTimestamp(LocalDateTime.now());
 		err.setStatus(status.value());
 		err.setError("Resource not found");
 		err.setMessage(e.getMessage());
@@ -35,7 +35,7 @@ public class ResourceExceptionHandler {
 	public ResponseEntity<StandardError> database(DatabaseException e, HttpServletRequest request) {
 		HttpStatus status = HttpStatus.BAD_REQUEST;
 		StandardError err = new StandardError();
-		err.setTimestamp(Instant.now());
+		err.setTimestamp(LocalDateTime.now());
 		err.setStatus(status.value());
 		err.setError("Database exception");
 		err.setMessage(e.getMessage());
@@ -47,7 +47,7 @@ public class ResourceExceptionHandler {
 	public ResponseEntity<ValidationError> validation(MethodArgumentNotValidException e, HttpServletRequest request) {
 		HttpStatus status = HttpStatus.UNPROCESSABLE_ENTITY;
 		ValidationError err = new ValidationError();
-		err.setTimestamp(Instant.now());
+		err.setTimestamp(LocalDateTime.now());
 		err.setStatus(status.value());
 		err.setError("Validation exception");
 		err.setMessage(e.getMessage());
